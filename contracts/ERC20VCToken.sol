@@ -47,10 +47,6 @@ contract ERC20VCToken is SafeMath, InterfaceERC20 {
     
     // contract owner
     address public owner;
-    // reward contract address
-    address public reward_contract = 0;
-    // trading contract address
-    address public trade_contract = 0;
 
     mapping (address => uint256) _balances;
     mapping (address => mapping (address => uint256)) public allowed;
@@ -73,14 +69,6 @@ contract ERC20VCToken is SafeMath, InterfaceERC20 {
     modifier restricted() {
         if (msg.sender != owner) {
             revert("caller is not contract owner");
-        }
-        _;
-    }
-
-    modifier tradeContractOnly() {
-        require(trade_contract != 0, "Trade contract not set, can't trigger any function!");
-        if (msg.sender != trade_contract) {
-            revert("caller is not trade contract owner");
         }
         _;
     }
@@ -155,14 +143,6 @@ contract ERC20VCToken is SafeMath, InterfaceERC20 {
 
     function allowance(address _owner, address _spender) public view returns (uint256) {
         return allowed[_owner][_spender];
-    }
-
-    /**
-     Customize function to interact with ERC20 token contract
-     */
-    function register_tradingcontract(address trade_addr) public restricted {
-        trade_contract = trade_addr;
-        emit Register("Registering trade contract address", trade_addr);
     }
 
     /**

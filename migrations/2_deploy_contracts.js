@@ -24,7 +24,5 @@ module.exports = function(deployer, network, accounts) {
     // hard cap at 100M
     erc20_instance.transfer(trade_i.address, new BigNumber(100000000).mul(eth_to_wei));
     console.log("Funding TradeContract contract " + trade_i.address + " 100000000 tokens from accounts=" + deploy_address);
-  }).then(function() {
-    erc20_instance.register_tradingcontract(trade_instance.address);
   });
 };
