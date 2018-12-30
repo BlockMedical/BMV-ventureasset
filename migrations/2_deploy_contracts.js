@@ -1,6 +1,6 @@
 /*jshint esversion: 6*/
 const BigNumber = web3.BigNumber;
-var erc20 = artifacts.require("ERC20VCToken.sol");
+var erc20 = artifacts.require("BMVInvestmentContract.sol");
 var trade = artifacts.require("TradeContract.sol");
 var erc20_instance;
 var trade_instance;
