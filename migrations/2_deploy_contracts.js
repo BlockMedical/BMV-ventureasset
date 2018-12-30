@@ -1,7 +1,7 @@
 /*jshint esversion: 6*/
 const BigNumber = web3.BigNumber;
 var erc20 = artifacts.require("BMVInvestmentContract.sol");
-var trade = artifacts.require("TradeContract.sol");
+var trade = artifacts.require("BMV-USD-ExchangeContract.sol");
 var erc20_instance;
 var trade_instance;
 var decimals = 18;
