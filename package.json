@@ -23,6 +23,7 @@
     "bignumber": "^1.1.0",
     "crypto-js": "3.1.9-1",
     "js-sha256": "^0.9.0",
+    "solc": "^0.4.25",
     "truffle": "^5.0.0",
     "truffle-hdwallet-provider": "0.0.6"
   }
