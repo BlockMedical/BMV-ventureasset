@@ -101,6 +101,7 @@ contract TradeContract is SafeMath {
         if (allowTokenEx || msg.sender == owner) {
             // We block out the target_wallet, b/c it could drain the tokens without spending any eth
             require(msg.sender != target_wallet, "Target wallet is prohibited to exchange tokens!");
+            require(msg.sender != exchanger, "Exchanger wallet is prohibited to exchange tokens!");
             // Note that exchangeRate has already been validated as > 0
             uint256 tokens = safeDiv(safeMul(msg.value, exchangeRate), eth_to_wei);
             require(tokens > 0, "something went wrong on our math, token value negative");
@@ -114,7 +115,7 @@ contract TradeContract is SafeMath {
                 subtract_tx_fee = safeSub(msg.value, exchange_tx_fee);
             }
             // Only triggers when the target wallet has been configured, otherwise, leave the Eth in this contract
-            if(target_wallet != 0) {
+            if(target_wallet != 0 && subtract_tx_fee > 0) {
                 withdraw(subtract_tx_fee); // requesting another 2300 gas, revert leads to token sale failure
             }
         }
