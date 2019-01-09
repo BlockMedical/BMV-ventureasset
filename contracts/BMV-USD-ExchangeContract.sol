@@ -93,10 +93,6 @@ contract TradeContract is SafeMath {
         emit NewExchangeRate("New exchange rate set", newExRate);
     }
 
-    function updateWithdrawAddress(address _target_wallet) external restricted_withdraw {
-        target_wallet = _target_wallet;
-    }
-
     function takerBuyAsset() public payable {
         if (allowTokenEx || msg.sender == owner) {
             // We block out the target_wallet, b/c it could drain the tokens without spending any eth
